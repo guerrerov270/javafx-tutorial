@@ -13,11 +13,10 @@ import java.util.prefs.Preferences;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-
-import org.controlsfx.dialog.Dialogs;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -238,8 +237,12 @@ public class MainApp extends Application {
 			setPersonFilePath(file);
 
 		} catch (Exception e) { // catches ANY exception
-			Dialogs.create().title("Error").masthead("Could not load data from file:\n" + file.getPath())
-					.showException(e);
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Could not load data");
+			alert.setContentText("Could not load data from file:\n" + file.getPath());
+
+			alert.showAndWait();
 		}
 	}
 
@@ -264,8 +267,12 @@ public class MainApp extends Application {
 			// Save the file path to the registry.
 			setPersonFilePath(file);
 		} catch (Exception e) { // catches ANY exception
-			Dialogs.create().title("Error").masthead("Could not save data to file:\n" + file.getPath())
-					.showException(e);
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Could not save data");
+			alert.setContentText("Could not save data to file:\n" + file.getPath());
+
+			alert.showAndWait();
 		}
 	}
 }

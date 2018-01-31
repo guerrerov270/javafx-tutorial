@@ -1,12 +1,11 @@
 package co.address.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
-import org.controlsfx.dialog.Dialogs;
-
 import co.address.control.MainApp;
 import co.address.model.Person;
 import co.address.util.DateUtil;
@@ -130,8 +129,13 @@ public class PersonOverviewController {
 
 		} else {
 			// Nothing selected.
-			Dialogs.create().title("No Selection").masthead("No Person Selected")
-					.message("Please select a person in the table.").showWarning();
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(mainApp.getPrimaryStage());
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Person Selected");
+			alert.setContentText("Please select a person in the table.");
+
+			alert.showAndWait();
 		}
 	}
 
@@ -146,8 +150,13 @@ public class PersonOverviewController {
 			personTable.getItems().remove(selectedIndex);
 		} else {
 			// Nothing selected.
-			Dialogs.create().title("No Selection").masthead("No Person Selected")
-					.message("Please select a person in the table.").showWarning();
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(mainApp.getPrimaryStage());
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Person Selected");
+			alert.setContentText("Please select a person in the table.");
+
+			alert.showAndWait();
 		}
 	}
 }
