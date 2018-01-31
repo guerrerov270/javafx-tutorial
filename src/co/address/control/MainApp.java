@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import co.address.model.*;
@@ -53,6 +54,9 @@ public class MainApp extends Application {
 
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("AddressApp");
+
+		// Set the application icon.
+		this.primaryStage.getIcons().add(new Image("file:resources/images/address_book.png"));
 
 		initRootLayout();
 
