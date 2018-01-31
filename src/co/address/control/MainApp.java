@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import co.address.model.*;
+import co.address.view.BirthdayStatisticsController;
 import co.address.view.PersonEditDialogController;
 import co.address.view.PersonOverviewController;
 import co.address.view.RootLayoutController;
@@ -273,6 +274,33 @@ public class MainApp extends Application {
 			alert.setContentText("Could not save data to file:\n" + file.getPath());
 
 			alert.showAndWait();
+		}
+	}
+
+	/**
+	 * Opens a dialog to show birthday statistics.
+	 */
+	public void showBirthdayStatistics() {
+		try {
+			// Load the fxml file and create a new stage for the popup.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/BirthdayStatistics.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Birthday Statistics");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set the persons into the controller.
+			BirthdayStatisticsController controller = loader.getController();
+			controller.setPersonData(personData);
+
+			dialogStage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
